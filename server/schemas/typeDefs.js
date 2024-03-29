@@ -1,4 +1,6 @@
 const typeDefs = `
+scalar Date
+
 type User {
     _id: ID
     first_name: String!
@@ -31,6 +33,10 @@ type Circle {
     squares: [User]
 
 }
+type Auth{
+    token: ID
+    user: User
+}
 
 type Query {
     mySquare(user: ID!) : Bio
@@ -41,7 +47,7 @@ type Query {
 }
 
 input BioInput{
-    birthday: Date!
+    birthday: String!
     fav_color: String!
     fav_food:String!
     fav_quote:String!
@@ -54,9 +60,9 @@ input BioInput{
     twitter:String
 }
 
-Type Mutation {
-    createSquare(first_name: String!, last_name: String!, email: String!, password: String!) : User
-    login(email: String!, password: String!)
+type Mutation {
+    createSquare(first_name: String!, last_name: String!, email: String!, password: String!): Auth
+    login(email: String!, password: String!): Auth
     createBio(input : BioInput): Bio
     createCircle( circle_name: String!, circle_type: String! ): Circle
     joinCircle(square : ID!, circle_code: String!): Circle

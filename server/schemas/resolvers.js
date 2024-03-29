@@ -1,11 +1,12 @@
 const { AuthenticationError } = require("apollo-server-express");
 const { User, Bio, Circle } = require("../models");
+const {signToken} = require('../utils/auth')
 
 const resolvers = {
   Query: {
-    mySquare: async (parent, args, context) => {
+    mySquare: async (parent, {user_id}, context) => {
       if (context.user) {
-        return Bio.findOne({ user_id: context.user._id }).populate('user_id');
+        return Bio.findOne({ user_id}).populate('user_id');
       }
       throw new AuthenticationError("You need to be logged in!");
     },
@@ -31,9 +32,11 @@ const resolvers = {
       }
   },
 
-  Mutations: {
+  Mutation: {
     createSquare: async (parent,{ first_name, last_name, email, password }) => {
-      return User.create({ first_name, last_name, email, password });
+      const user = await User.create({ first_name, last_name, email, password });
+      const token = signToken(user)
+      return { token, user }
     },
     login: async (parent, { email, password }) => {
       const userData = User.findOne({ email });
@@ -45,8 +48,8 @@ const resolvers = {
       if (!correctPw) {
         throw new AuthenticationError('Incorrect Credentials!')
       }
-
-      return userData;
+        const token = signToken(userData)
+      return { token, userData };
     },
     createBio: async (parent, { ...input }, context) => {
         if (context.user) {
