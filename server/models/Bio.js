@@ -7,7 +7,6 @@ const bioSchema = new Schema({
     user_id: {
         type: Schema.Types.ObjectId,
         ref: 'User',
-        required: true
     },
     birthday: {
         type: Schema.Types.Date,

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-const { uuid } = require('uuidv4')
+const { v4: uuidv4 } = require('uuid');
 
 const { Schema } = mongoose
 
@@ -17,7 +17,7 @@ const circleSchema = new Schema({
     circle_id_code : {
         type: String,
         required: true,
-        default : uuid()
+        default : uuidv4()
     },
     squares: [
         {

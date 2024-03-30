@@ -11,13 +11,14 @@ type User {
 
 type Bio {
     _id: ID
-    user_id : User!
+    user_id : User
     birthday: Date!
     fav_color: String!
     fav_food:String!
     fav_quote:String!
     fav_movie:String!
     fav_tv_show:String!
+    fav_music_artist: String!
     fav_song:String!
     hobby:String!
     github:String
@@ -39,6 +40,7 @@ type Auth{
 }
 
 type Query {
+    allSquares:[User]
     mySquare(user: ID!) : Bio
     peerSquare(peerId: ID!) : Bio
     circleverse:[Circle]
@@ -53,6 +55,7 @@ input BioInput{
     fav_quote:String!
     fav_movie:String!
     fav_tv_show:String!
+    fav_music_artist: String!
     fav_song:String!
     hobby:String!
     github:String

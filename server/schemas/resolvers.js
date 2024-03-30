@@ -4,31 +4,32 @@ const {signToken} = require('../utils/auth')
 
 const resolvers = {
   Query: {
-    mySquare: async (parent, {user_id}, context) => {
-      if (context.user) {
-        return Bio.findOne({ user_id}).populate('user_id');
-      }
-      throw new AuthenticationError("You need to be logged in!");
+    allSquares: async () => {
+      return User.find()
+    },
+    mySquare: async (parent, {user}, context) => {
+      console.log(user);
+        return Bio.findOne({user_id: user}).populate('user_id');
+   
     },
     peerSquare: async (parent, { peerId }) => {
       const peerData = await User.findOne({ _id: peerId });
       return Bio.findOne({ user_id: peerData._id }).populate('user_id');
     },
     circleverse: async () => {
-        return Circle.find();
+        return Circle.find().populate('squares');
       
     },
     circle: async (parent, { circle_id_code },context) => {
-      if (context.user) {
-        return Circle.findOne({ circle_id_code});
-      }
-      throw new AuthenticationError("You arent in this circle");
+    
+        return Circle.findOne({ circle_id_code}).populate('squares');
+      
+    
     },
-    myCircles: async (parent, args,context) => {
-        if (context.user) {
-          return Circle.find({squares: { $in: [context.user._id]}  })
-        }
-        throw new AuthenticationError("You arent in this circle");
+    myCircles: async (parent, {user},context) => {
+        
+          return Circle.find({squares: user }).populate('squares')
+     
       }
   },
 
@@ -51,11 +52,11 @@ const resolvers = {
         const token = signToken(userData)
       return { token, userData };
     },
-    createBio: async (parent, { ...input }, context) => {
-        if (context.user) {
-            return Bio.create({ user_id: context.user._id, ...input });
-        }
-      throw new AuthenticationError('No user detected!')
+    createBio: async (parent, { input }, context) => {
+      
+            return Bio.create({  ...input });
+        
+      
     },
     createCircle: async (parent, { circle_name, circle_type },context) => {
         if (context.user) {
@@ -64,16 +65,15 @@ const resolvers = {
         throw new AuthenticationError('Need to be looged in to create a circle!')
     },
     joinCircle: async (parent, { square, circle_code }, context) => {
-        if (context.user) {
+     
             return Circle.findOneAndUpdate(
                 { circle_id_code: circle_code },
                 {
-                  $addToSet: { squares: [context.user._id] },
+                  $addToSet: { squares: [square] },
                 },
                 { new: true }
-              );
-        }
-        throw new AuthenticationError('You need to be logged in to do that!')
+              ).populate('squares');
+
     },
     joinInnerCircle: async (parent, { invitee }, context) => {
         if (context.user) {

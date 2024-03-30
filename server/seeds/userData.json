@@ -1,0 +1,142 @@
+[
+    {
+        "first_name": "John",
+        "last_name": "Doe",
+        "email": "john@example.com",
+        "password": "password123",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Jane",
+        "last_name": "Smith",
+        "email": "jane@example.com",
+        "password": "password456",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Alice",
+        "last_name": "Johnson",
+        "email": "alice@example.com",
+        "password": "password789",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Bob",
+        "last_name": "Brown",
+        "email": "bob@example.com",
+        "password": "passwordabc",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Sarah",
+        "last_name": "Davis",
+        "email": "sarah@example.com",
+        "password": "passworddef",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Michael",
+        "last_name": "Wilson",
+        "email": "michael@example.com",
+        "password": "passwordghi",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Emily",
+        "last_name": "Martinez",
+        "email": "emily@example.com",
+        "password": "passwordjkl",
+        "innerCircle": []
+    },
+    {
+        "first_name": "David",
+        "last_name": "Taylor",
+        "email": "david@example.com",
+        "password": "passwordmno",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Olivia",
+        "last_name": "Anderson",
+        "email": "olivia@example.com",
+        "password": "passwordpqr",
+        "innerCircle": []
+    },
+    {
+        "first_name": "James",
+        "last_name": "Thomas",
+        "email": "james@example.com",
+        "password": "passwordstu",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Sophia",
+        "last_name": "Jackson",
+        "email": "sophia@example.com",
+        "password": "passwordvwx",
+        "innerCircle": []
+    },
+    {
+        "first_name": "William",
+        "last_name": "White",
+        "email": "william@example.com",
+        "password": "passwordyz",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Isabella",
+        "last_name": "Harris",
+        "email": "isabella@example.com",
+        "password": "password123",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Daniel",
+        "last_name": "Martin",
+        "email": "daniel@example.com",
+        "password": "password456",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Ethan",
+        "last_name": "Clark",
+        "email": "ethan@example.com",
+        "password": "password789",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Ava",
+        "last_name": "Lewis",
+        "email": "ava@example.com",
+        "password": "passwordabc",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Mia",
+        "last_name": "Lee",
+        "email": "mia@example.com",
+        "password": "passworddef",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Alexander",
+        "last_name": "Walker",
+        "email": "alexander@example.com",
+        "password": "passwordghi",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Charlotte",
+        "last_name": "Hall",
+        "email": "charlotte@example.com",
+        "password": "passwordjkl",
+        "innerCircle": []
+    },
+    {
+        "first_name": "Matthew",
+        "last_name": "Young",
+        "email": "matthew@example.com",
+        "password": "passwordmno",
+        "innerCircle": []
+    }
+]

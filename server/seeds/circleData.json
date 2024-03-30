@@ -1,0 +1,22 @@
+[
+    {
+        "circle_name": "Tech Enthusiasts",
+        "circle_type": "Interest",
+        "squares": []
+    },
+    {
+        "circle_name": "Tech Classes",
+        "circle_type": "Education",
+        "squares": []
+    },
+    {
+        "circle_name": "Foodies",
+        "circle_type": "Food",
+        "squares": []
+    },
+    {
+        "circle_name": "Book Club",
+        "circle_type": "Entertainment",
+        "squares": []
+    }
+]
