@@ -3,6 +3,7 @@ scalar Date
 
 type User {
     _id: ID
+    password: String
     first_name: String!
     last_name: String!
     email: String!
@@ -61,11 +62,12 @@ input BioInput{
     github:String
     linked_in:String
     twitter:String
+    user_id: String
 }
 
 type Mutation {
-    createSquare(first_name: String!, last_name: String!, email: String!, password: String!): Auth
-    login(email: String!, password: String!): Auth
+    createSquare(first_name: String!, last_name: String!, email: String!, password: String!): User
+    login(email: String!, password: String!): User
     createBio(input : BioInput): Bio
     createCircle( circle_name: String!, circle_type: String! ): Circle
     joinCircle(square : ID!, circle_code: String!): Circle

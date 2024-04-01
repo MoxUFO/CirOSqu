@@ -36,33 +36,33 @@ const resolvers = {
   Mutation: {
     createSquare: async (parent,{ first_name, last_name, email, password }) => {
       const user = await User.create({ first_name, last_name, email, password });
-      const token = signToken(user)
-      return { token, user }
+      // const token = signToken(user)
+      return user
     },
     login: async (parent, { email, password }) => {
-      const userData = User.findOne({ email });
+      const userData = await User.findOne({ email });
       if (!userData) {
         throw new AuthenticationError('Square does not exist!')
       }
+      
       const correctPw = await userData.isCorrectPassword(password);
 
       if (!correctPw) {
         throw new AuthenticationError('Incorrect Credentials!')
       }
-        const token = signToken(userData)
-      return { token, userData };
+        // const token = signToken(userData)
+      return userData;
     },
     createBio: async (parent, { input }, context) => {
       
-            return Bio.create({  ...input });
+            return await Bio.create({  ...input }).populate('user_id');
         
       
     },
     createCircle: async (parent, { circle_name, circle_type },context) => {
-        if (context.user) {
+ 
             return Circle.create({ circle_name, circle_type }); 
-        }
-        throw new AuthenticationError('Need to be looged in to create a circle!')
+ 
     },
     joinCircle: async (parent, { square, circle_code }, context) => {
      
@@ -75,22 +75,23 @@ const resolvers = {
               ).populate('squares');
 
     },
-    joinInnerCircle: async (parent, { invitee }, context) => {
-        if (context.user) {
+    joinInnerCircle: async (parent, { inviter,invitee }, context) => {
+        
             const peerData = await User.findOneAndUpdate(
                 { _id: invitee },
                 {
-                  $addToSet: { innerCircle: [context.user._id] },
-                }
-              );
-              return User.findByIdAndUpdate(
-                { _id: context.user._id },
+                  $addToSet: { innerCircle: [inviter] },
+                },
+                {new:true}
+              ).populate('innerCircle');
+              return await User.findByIdAndUpdate(
+                { _id: inviter},
                 {
                   $addToSet: { innerCircle: [peerData._id] },
-                }
-              );
-        }
-        throw new AuthenticationError('You need to be logged in to do that!')
+                },
+                {new: true}
+              ).populate('innerCircle');
+
     },
   },
 };

@@ -26,7 +26,8 @@ const userSchema = new Schema({
     innerCircle: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            unique: true
         }
     ]
 });
@@ -41,8 +42,7 @@ userSchema.pre('save', async function(next){
 });
 
 userSchema.methods.isCorrectPassword = async function (password) {
-    return await bcrypt.compare(password,this.password);
-    
+    return await bcrypt.compare(password, this.password)
 }
 
 const User = mongoose.model('User', userSchema);

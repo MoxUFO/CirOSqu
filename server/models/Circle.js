@@ -22,7 +22,8 @@ const circleSchema = new Schema({
     squares: [
         {
             type: Schema.Types.ObjectId,
-            ref: 'User'
+            ref: 'User',
+            unique: true
         }
     ]
 })
